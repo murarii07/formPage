@@ -30,7 +30,7 @@ function Form() {
                     errorElement.remove();
                 }
             }
-        }, 1000);
+        }, 500);
 
         return () => { clearTimeout(handler); };
     }, [tExp]);
@@ -50,7 +50,7 @@ function Form() {
                     errorElement.remove();
                 }
             }
-        }, 1000);
+        }, 500);
 
         return () => { clearTimeout(handler); };
     }, [indExp]);
@@ -70,7 +70,7 @@ function Form() {
                     errorElement.remove();
                 }
             }
-        }, 1000);
+        }, 500);
 
         return () => { clearTimeout(handler); };
     }, [percent]);
@@ -91,7 +91,7 @@ function Form() {
                     errorElement.remove();
                 }
             }
-        }, 1000);
+        }, 500);
 
         return () => { clearTimeout(handler); };
     }, [phone]);
@@ -111,7 +111,7 @@ function Form() {
                     errorElement.remove();
                 }
             }
-        }, 1000);
+        }, 500);
 
         return () => { clearTimeout(handler); };
     }, [tName]);
