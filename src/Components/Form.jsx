@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { obj } from "../Validationfunc/functions";
+import { url } from "../config";
 function Form() {
     function errorCreation(obj, text) {
         let r = document.createElement('div');
@@ -74,7 +75,6 @@ function Form() {
 
         return () => { clearTimeout(handler); };
     }, [percent]);
-
     useEffect(() => {
         const handler = setTimeout(() => {
             const p = document.querySelector('#phoneNo');
@@ -139,15 +139,8 @@ function Form() {
         }
         const form = document.querySelector('form');
         const formdata = new FormData(form);
-        let col = []
-        for (const [keys, values] of formdata.entries()) {
-            col.push(keys)
-        }
-        const res = await fetch("http://127.0.0.1:5000/ad", { method: "POST",headers:{'Content-Type':'application/json'}, body: JSON.stringify({ 'columns': col }) });
-        const ress = await res.json();
-        if (ress['result']===true) {
-
-            const response = await fetch("http://127.0.0.1:5000/add", { method: "POST", body: formdata });
+        try{
+            const response = await fetch("http://localhost:5000/add", { method: "POST", body: formdata });
             const result = await response.json();
             if (result['success']) {
                 form.reset();
@@ -157,8 +150,8 @@ function Form() {
                 alert(result.message);
             }
         }
-        else{
-            alert("dsdf",ress['message'])
+        catch (error) {
+            console.error("Error:", error);
         }
     }
     return (
@@ -167,52 +160,52 @@ function Form() {
                 <h2>Teaching Faculty Details</h2>
 
                 <div className="field">
-                    <label for="departmentName">Department Name<span className="required">*</span></label>
+                    <label htmlFor="departmentName">Department Name<span className="required">*</span></label>
                     <input type="text" id="departmentName" name="departmentName" placeholder="Department Name" required></input>
                 </div>
 
                 <div className="field">
-                    <label for="designationDateOfJoining">Designation at Date Of Joining<span className="required">*</span></label>
+                    <label htmlFor="designationDateOfJoining">Designation at Date Of Joining<span className="required">*</span></label>
                     <input type="text" id="designationDateOfJoining" name="designationDateOfJoining" placeholder="Enter the designation at date of joining" required></input>
                 </div>
 
                 <div className="field">
-                    <label for="teacherName">Teacher Name<span className="required">*</span></label>
+                    <label htmlFor="teacherName">Teacher Name<span className="required">*</span></label>
                     <input type="text" value={tName} onChange={(e) => nameHandle(e)} id="teacherName" name="teacherName" placeholder="Teacher Name" required></input>
                 </div>
 
                 <div className="field">
-                    <label for="qualification">Qualification<span className="required">*</span></label>
+                    <label htmlFor="qualification">Qualification<span className="required">*</span></label>
                     <input type="text" id="qualification" name="qualification" placeholder="Qualification" required></input>
                 </div>
 
                 <div className="field">
-                    <label for="specialization">Specialization<span className="required">*</span></label>
+                    <label htmlFor="specialization">Specialization<span className="required">*</span></label>
                     <input type="text" id="specialization" name="specialization" placeholder="Specialization" required></input>
                 </div>
 
                 <div className="field">
-                    <label for="joinDate">Date Of Joining<span className="required">*</span></label>
+                    <label htmlFor="joinDate">Date Of Joining<span className="required">*</span></label>
                     <input type="date" id="joinDate" name="joinDate" required></input>
                 </div>
 
                 <div className="field">
-                    <label for="basicPay">Present Basic Pay<span className="required">*</span></label>
+                    <label htmlFor="basicPay">Present Basic Pay<span className="required">*</span></label>
                     <input type="text" id="basicPay" name="basicPay" placeholder="Present Basic Pay" required></input>
                 </div>
 
                 <div className="field">
-                    <label for="appointmentLetter">Appointment Letter No.<span className="required">*</span></label>
+                    <label htmlFor="appointmentLetter">Appointment Letter No.<span className="required">*</span></label>
                     <input type="text" id="appointmentLetter" name="appointmentLetter" placeholder="Enter Appointment Letter No." required></input>
                 </div>
 
                 <div className="field">
-                    <label for="approvalDate">University Approval Date<span className="required">*</span></label>
+                    <label htmlFor="approvalDate">University Approval Date<span className="required">*</span></label>
                     <input type="date" id="approvalDate" name="approvalDate" required></input>
                 </div>
 
                 <div className="field">
-                    <label for="teacherType">Designation Type<span className="required">*</span></label>
+                    <label htmlFor="teacherType">Designation Type<span className="required">*</span></label>
                     <select id="teacherType" name="teacherType" required>
                         <option value="">-- Select Teacher Type --</option>
                         <option value="Visiting">Visiting</option>
@@ -221,12 +214,12 @@ function Form() {
                 </div>
 
                 <div className="field">
-                    <label for="currentDesignation">Present/Current Designation<span className="required">*</span></label>
+                    <label htmlFor="currentDesignation">Present/Current Designation<span className="required">*</span></label>
                     <input type="text" id="currentDesignation" name="currentDesignation" placeholder="Enter the present/current designation" required></input>
                 </div>
 
                 <div className="field">
-                    <label for="programme">Programme Associated With<span className="required">*</span></label>
+                    <label htmlFor="programme">Programme Associated With<span className="required">*</span></label>
                     <select id="programme" name="programme" required>
                         <option value="">Select Programmes-</option>
                         <option value="(BACHELOR OF COMMERCE): (BUSINESS ADMINISTRATION)">(BACHELOR OF COMMERCE): (BUSINESS ADMINISTRATION)</option>
@@ -251,26 +244,26 @@ function Form() {
                 </div>
 
                 <div className="field">
-                    <label for="percentageMarks">Percentage Of Marks<span className="required">*</span></label>
+                    <label htmlFor="percentageMarks">Percentage Of Marks<span className="required">*</span></label>
                     <input type="text" value={percent} onChange={(e) => percenthandle(e)} id="percentageMarks" name="percentageMarks" placeholder="Percentage Of Marks" required></input>
                 </div>
 
                 <div className="field">
-                    <label for="teachingExperience">Years Of Teaching Experience<span className="required">*</span></label>
+                    <label htmlFor="teachingExperience">Years Of Teaching Experience<span className="required">*</span></label>
                     <input type="text" value={tExp} onChange={(e) => tExpHandle(e)} id="teachingExperience" name="teachingExperience" placeholder="Years Of Teaching Experience" required></input>
                 </div>
                 <div className="field">
-                    <label for="industryExperience">Total Industry Experience<span className="required">*</span></label>
+                    <label htmlFor="industryExperience">Total Industry Experience<span className="required">*</span></label>
                     <input type="text" value={indExp} onChange={(e) => indExpHandle(e)} id="industryExperience" name="industryExperience" placeholder="Total Industry Experience" required></input>
                 </div>
 
                 <div className="field">
-                    <label for="birthDate">Birth Date<span className="required">*</span></label>
+                    <label htmlFor="birthDate">Birth Date<span className="required">*</span></label>
                     <input type="date" id="birthDate" name="birthDate" max="2005-01-01" required></input>
                 </div>
 
                 <div className="field">
-                    <label for="scalePay">Scale Of Pay<span className="required">*</span></label>
+                    <label htmlFor="scalePay">Scale Of Pay<span className="required">*</span></label>
                     <select id="scalePay" name="scalePay" required>
                         <option value="">-- Pay --</option>
                         <option value="Level1">Level1</option>
@@ -289,22 +282,22 @@ function Form() {
                 </div>
 
                 <div className="field">
-                    <label for="totalEmoluments">Total Emoluments<span className="required">*</span></label>
+                    <label htmlFor="totalEmoluments">Total Emoluments<span className="required">*</span></label>
                     <input type="text" id="totalEmoluments" name="totalEmoluments" placeholder="Total Emoluments" required></input>
                 </div>
 
                 <div className="field">
-                    <label for="phoneNo">Phone No<span className="required">*</span></label>
+                    <label htmlFor="phoneNo">Phone No<span className="required">*</span></label>
                     <input type="text" id="phoneNo" onChange={(e) => phonehandle(e)} name="phoneNo" minLength={10} maxLength={10} placeholder="Phone No" required></input>
                 </div>
 
                 <div className="field">
-                    <label for="resume">Resume<span className="required">*</span></label>
+                    <label htmlFor="resume">Resume<span className="required">*</span></label>
                     <input type="file" id="resume" name="resume" placeholder="cv" accept="*/*" required></input>
                 </div>
 
                 <div className="field">
-                    <label for="photo">Photo Image<span className="required">*</span></label>
+                    <label htmlFor="photo">Photo Image<span className="required">*</span></label>
                     <input type="file" id="photo" name="photo" placeholder="image" accept="image/*" required></input>
                 </div>
 
