@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { obj } from "../Validationfunc/functions";
-import { url } from "../config";
 function Form() {
     function errorCreation(obj, text) {
         let r = document.createElement('div');
