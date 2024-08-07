@@ -13,7 +13,7 @@ function Tables() {
                 //console.log(result)
                 const d = result['data'];
                 setTableData(d)
-               
+
             }
             else {
                 setTableData([])
@@ -32,7 +32,7 @@ function Tables() {
     }, [tableData])
     return (
         <>
-        <div>count:<span>{tableData.length}</span></div>
+            <div>count:<span>{tableData.length}</span></div>
             <table className="table-details">
                 <thead>
                     <tr>
@@ -51,7 +51,7 @@ function Tables() {
                     ))}
                 </tbody>
             </table>
-            <button><a href="http://localhost:5000/download" download="result.zip">download the table</a></button>
+            <button><a href="http://localhost:5000/download" download="result.zip" style={{ textDecoration: "none", color: "white" }}>download the table</a></button>
         </>
     );
 }
