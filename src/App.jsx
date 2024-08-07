@@ -10,14 +10,13 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Switch>
-
-          <Route   path='/' Component={Form}></Route>
-          <Route path='/details' Component={Tables}></Route>
-          <Route path='/submit' Component={RespondedMessage}></Route>
-          <Route component={NotFound} /> 
-      </Switch>
-    </BrowserRouter>
+        <Routes>
+          <Route exact path='/' element={<Form />}></Route>
+          <Route exact path='/details' element={<Tables />}></Route>
+          <Route exact path='/submit' element={<RespondedMessage />}></Route>
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
     </div >
   );
 }
