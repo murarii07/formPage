@@ -11,3 +11,64 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+/* Basic table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 16px;
+  text-align: left;
+  background-color: #f8f9fa;
+}
+
+/* Table header styling */
+th, td {
+  padding: 12px 15px;
+  border: 1px solid #dee2e6;
+}
+
+thead {
+  background-color: #343a40;
+  color: #ffffff;
+}
+
+/* Alternate row background color */
+tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Hover effect for table rows */
+tbody tr:hover {
+  background-color: #e9ecef;
+}
+
+/* Responsive table */
+/* @media screen and (max-width: 600px) {
+  table, thead, tbody, th, td, tr {
+      display: block;
+  }
+
+  thead tr {
+      display: none;
+  }
+
+  tbody tr {
+      margin-bottom: 10px;
+  }
+
+  td {
+      text-align: right;
+      padding-left: 50%;
+      position: relative;
+  }
+
+  td::before {
+      content: attr(data-label);
+      position: absolute;
+      left: 0;
+      width: 50%;
+      padding-left: 15px;
+      font-weight: bold;
+      text-align: left;
+  }
+} */
