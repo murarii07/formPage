@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 function Tables() {
     const fieldss = ['departmentName', 'qualification', 'teacherName', 'programme'];
@@ -27,7 +27,7 @@ function Tables() {
 
     }
 
-    useState(async () => {
+    useEffect(() => {
         fetchData()
     }, [tableData])
     return (
@@ -51,7 +51,7 @@ function Tables() {
                     ))}
                 </tbody>
             </table>
-            <button><a href="http://localhost:5000/download" download="result.zip" style={{ textDecoration: "none", color: "white" }}>download the table</a></button>
+            <button><a href="http://localhost:5000/download" download="result.zip">download the table</a></button>
         </>
     );
 }

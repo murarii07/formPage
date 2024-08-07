@@ -196,3 +196,8 @@
    font-size: 12px;
    margin-top: 0px; 
   }
+  a{
+    cursor: pointer;
+    color: white;
+    text-decoration: none;
+  }
