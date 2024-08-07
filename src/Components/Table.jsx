@@ -29,7 +29,7 @@ function Tables() {
 
     useEffect(() => {
         fetchData()
-    }, [tableData])
+    }, [])
     return (
         <>
             <div>count:<span>{tableData.length}</span></div>
