@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+
+import { useEffect, useState } from "react";
 function Tables() {
     const fieldss = ['departmentName', 'qualification', 'teacherName', 'programme'];
     const [tableData, setTableData] = useState([])
+    const [inp, setInp] = useState('')
 
     // Sample data to populate the table
     const fetchData = async () => {
@@ -26,6 +27,19 @@ function Tables() {
 
 
     }
+    const handleChange = (e) => {
+        setInp(e.target.value)
+    }
+    useEffect(() => {
+        if(inp===''){
+            return
+        }
+        const setIn = setTimeout(() => {
+            const filterData = tableData.filter(x => x.teacherName.includes(inp));
+            setTableData(filterData)
+        },[1000])
+        return () => { clearTimeout(setIn) };
+    }, [inp])
 
     useEffect(() => {
         fetchData()
@@ -33,6 +47,8 @@ function Tables() {
     return (
         <>
             <div>count:<span>{tableData.length}</span></div>
+            <label htmlFor="search">search by teacher name:</label>
+            <input type="text" value={inp} onChange={(e) => handleChange(e)} />
             <table className="table-details">
                 <thead>
                     <tr>
