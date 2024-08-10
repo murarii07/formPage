@@ -4,6 +4,7 @@ function Tables() {
     const fieldss = ['departmentName', 'qualification', 'teacherName', 'programme'];
     const [tableData, setTableData] = useState([])
     const [inp, setInp] = useState('')
+    const [copy, setCopy] = useState([])
 
     // Sample data to populate the table
     const fetchData = async () => {
@@ -13,7 +14,8 @@ function Tables() {
             if (result['succes']) {
                 //console.log(result)
                 const d = result['data'];
-                setTableData(d)
+                setTableData(d);
+                setCopy(d)
 
             }
             else {
@@ -36,7 +38,7 @@ function Tables() {
         }
         const setIn = setTimeout(() => {
             const filterData = tableData.filter(x => x.teacherName.includes(inp));
-            setTableData(filterData)
+            setCopy(filterData)
         },[1000])
         return () => { clearTimeout(setIn) };
     }, [inp])
@@ -58,7 +60,7 @@ function Tables() {
                     </tr>
                 </thead>
                 <tbody>
-                    {tableData.map((item, index) => (
+                    {copy.map((item, index) => (
                         <tr key={index}>
                             {fieldss.map((field, idx) => (
                                 <td key={idx}>{item[field]}</td>
