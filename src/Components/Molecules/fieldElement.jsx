@@ -3,12 +3,9 @@ function Field(props) {
     // Destructuring the props
     const { elementobj,error,id} = props;
     return (
-        <div className="field">
-            
+        <div className="field">       
         {elementobj}
-        
         {error && (<Error id={`${id}`} />)}
-        
         </div>
     );
 }

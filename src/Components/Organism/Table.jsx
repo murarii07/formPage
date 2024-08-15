@@ -1,6 +1,7 @@
 
 import { useEffect, useState } from "react";
 import Input from "../atoms/inputElement";
+import Button from "../atoms/buttonElement";
 function Tables() {
     const fieldss = ['departmentName', 'qualification', 'teacherName', 'programme'];
     const [tableData, setTableData] = useState([])
@@ -50,7 +51,7 @@ function Tables() {
     return (
         <>
             <div>count:<span>{tableData.length}</span></div>
-            <Input inputId="text" onChange={(e) => handleChange(e)} value={inp} />
+            <Input inputId="text" name={"search"} onChange={(e) => handleChange(e)} value={inp} />
             <table className="table-details">
                 <thead>
                     <tr>
@@ -69,8 +70,11 @@ function Tables() {
                     ))}
                 </tbody>
             </table>
-            <button><a href={process.env.REACT_APP_API_URL_DOWNLOAD}
-            download="result.zip">download the table</a></button >
+            <Button  
+            name={<a href={process.env.REACT_APP_API_URL_DOWNLOAD}
+            download="result.zip">download the table</a>} 
+            />
+           
         </>
     );
 }

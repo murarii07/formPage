@@ -1,7 +1,7 @@
 
 function Button(props) {
     // Destructuring the props
-    const {buttonType,buttonName,name } = props;
+    const {buttonType,buttonName,name,} = props;
 
     return (
         <button type={buttonType} className={buttonName}>{name}</button>
