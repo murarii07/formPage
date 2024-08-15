@@ -3,7 +3,7 @@ function Select(props) {
     const { selectId, selectName, selectType, name, accept, options, ...rest } = props;
 
     return (
-        <div className="field">
+        <>
             <label htmlFor={selectId}>
                 {name}<span className="required">*</span>
             </label>
@@ -17,9 +17,7 @@ function Select(props) {
                     <option value={field} key={index}>{field}</option>
                 ))}
             </select>
-
-
-        </div>
+        </>
     );
 }
 // Spread any remaining props onto the select element

@@ -1,14 +1,14 @@
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from "react-redux";
-import { changeValue } from './redux/flag';
-import Input from './inputElement';
-import Button from './buttonElement';
+import { changeValue } from '../redux/flag';
+import Input from '../atoms/inputElement';
+import Button from '../atoms/buttonElement';
 function Authenticate() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const login = async (obj) => {
         try {
-            const res = await fetch("http://localhost:5000/admin", {
+            const res = await fetch(process.env.REACT_APP_API_URL_ADMIN, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(obj),

@@ -3,7 +3,8 @@ function Input(props) {
     const { inputId, inputName, inputType, placeholder, name ,...rest } = props;
 
     return (
-        <div className="field">
+        <>
+
             <label htmlFor={inputId}>
                 {name}<span className="required">*</span>
             </label>
@@ -14,8 +15,9 @@ function Input(props) {
                 placeholder={placeholder}
                 {...rest} // Spread any additional props
                 required
+               
             />
-        </div>
+       </>
     );
 }
  // Spread any remaining props onto the input element

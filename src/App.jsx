@@ -1,12 +1,12 @@
 import React from 'react';
-import Form from './Components/Form';
+import Form from './Components/Organism/Form';
 import './form.css';
 import RespondedMessage from './Components/Responded';
-import Tables from './Components/Table';
+import Tables from './Components/Organism/Table';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import NotFound from './Components/notFound';
+import NotFound from './Components/Organism/notFound';
 import PrivateRoute from './Components/PrivateRoute';
-import Authenticate from './Components/Authentication';
+import Authenticate from './Components/Organism/Authentication';
 
 // Layout component for authenticated routes
 function AdminLayout() {

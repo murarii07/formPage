@@ -1,5 +1,6 @@
 
 import { useEffect, useState } from "react";
+import Input from "../atoms/inputElement";
 function Tables() {
     const fieldss = ['departmentName', 'qualification', 'teacherName', 'programme'];
     const [tableData, setTableData] = useState([])
@@ -33,13 +34,13 @@ function Tables() {
         setInp(e.target.value)
     }
     useEffect(() => {
-        if(inp===''){
+        if (inp === '') {
             return
         }
         const setIn = setTimeout(() => {
             const filterData = tableData.filter(x => x.teacherName.includes(inp));
             setCopy(filterData)
-        },[1000])
+        }, [1000])
         return () => { clearTimeout(setIn) };
     }, [inp])
 
@@ -49,8 +50,7 @@ function Tables() {
     return (
         <>
             <div>count:<span>{tableData.length}</span></div>
-            <label htmlFor="search">search by teacher name:</label>
-            <input type="text" value={inp} onChange={(e) => handleChange(e)} />
+            <Input inputId="text" onChange={(e) => handleChange(e)} value={inp} />
             <table className="table-details">
                 <thead>
                     <tr>
@@ -69,7 +69,8 @@ function Tables() {
                     ))}
                 </tbody>
             </table>
-            <button><a href="http://localhost:5000/download" download="result.zip">download the table</a></button>
+            <button><a href={process.env.REACT_APP_API_URL_DOWNLOAD}
+            download="result.zip">download the table</a></button >
         </>
     );
 }
