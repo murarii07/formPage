@@ -1,9 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import { changeValue } from './redux/flag';
-
+import Input from './inputElement';
+import Button from './buttonElement';
 function Authenticate() {
-    const dispatch=useDispatch();
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const login = async (obj) => {
         try {
@@ -13,7 +14,7 @@ function Authenticate() {
                 body: JSON.stringify(obj),
             });
             const result = await res.json();
-        
+
             return result.success;
         } catch (error) {
             console.log(error)
@@ -32,7 +33,8 @@ function Authenticate() {
         if (flag) {
             navigate('/details'); // Change to your intended route
         }
-        else{
+        else {
+            alert("inccorect username or password")
             navigate("/login")
         }
     };
@@ -40,11 +42,24 @@ function Authenticate() {
     return (
         <>
             <form method="post" onSubmit={formd}>
-                <label htmlFor="username">Username:</label>
-                <input type="text" name="username" required />
-                <label htmlFor="psw">Password:</label>
-                <input type="password" name="psw" required />
-                <button type="submit">Login</button>
+                <Input
+                    inputId="username"
+                    inputName="username"
+                    inputType="text"
+                    placeholder="Username"
+                    name="Username"
+                />
+
+                <Input
+                    inputId="psw"
+                    inputName="psw"
+                    inputType="password"
+                    placeholder="Enter Password"
+                    name="Password"
+                />
+
+
+<Button buttonType="submit" buttonName="submit-button" name="Login"/>
             </form>
         </>
     );

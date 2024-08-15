@@ -1,6 +1,35 @@
 import { useEffect, useState } from "react";
 import { obj } from "../Validationfunc/functions";
+import Input from "./inputElement";
+import Select from "./optionElement";
+import Button from './buttonElement';
+
 function Form() {
+    const programmeOptions = [
+        "Select Programmes-",
+        "(BACHELOR OF COMMERCE): (BUSINESS ADMINISTRATION)",
+        "(BACHELOR OF COMMERCE): (BANKING, FINANCIAL SERVICES AND INSURANCE)",
+        "(MASTER OF COMMERCE): (BUSINESS MANAGEMENT)",
+        "(MASTER OF COMMERCE): (BANKING & FINANCE)",
+        "(MASTER OF COMMERCE): M.Sc.(FINANCE)",
+        "(MASTER OF SCIENCE): (INFORMATION TECHNOLOGY)",
+        "(BACHELOR OF SCIENCE): (COMPUTER SCIENCE)",
+        "(BACHELOR OF SCIENCE) : (INFORMATION TECHNOLOGY)",
+        "(BACHELOR OF ARTS): MULTIMEDIA AND MASS COMMUNICATION",
+        "(BACHELOR OF SCIENCE): (DATA SCIENCE)",
+        "(BACHELOR OF SCIENCE): (COMPUTER APPLICATIONS)",
+        "(BACHELOR OF COMMERCE): (BUSINESS ADMINISTRATION)",
+        "(BACHELOR OF COMMERCE): COMMERCE",
+        "(MASTER OF COMMERCE): ADVANCED ACCOUNTANCY",
+        "(BACHELOR OF COMMERCE): (ACCOUNTING & FINANCE)",
+        "(BACHELOR OF COMMERCE): (BANKING & INSURANCE)",
+        "(BACHELOR OF COMMERCE): (FINANCIAL MARKETS)",
+        "(BACHELOR OF COMMERCE): (MANAGEMENT STUDIES)"
+    ];
+    const scalePayOptions = ["-- Pay --"]
+    for (let i = 1; i < 13; i++) {
+        scalePayOptions.push(`Level${i}`)
+    }
     function errorCreation(obj, text) {
         let r = document.createElement('div');
         r.innerText = `*invalid ${text}`;
@@ -138,7 +167,7 @@ function Form() {
         }
         const form = document.querySelector('form');
         const formdata = new FormData(form);
-        try{
+        try {
             const response = await fetch("http://localhost:5000/add", { method: "POST", body: formdata });
             const result = await response.json();
             if (result['success']) {
@@ -157,150 +186,195 @@ function Form() {
         <>
             <form className="form-container" encType="multipart/form-data" onSubmit={handleSubmit}>
                 <h2>Teaching Faculty Details</h2>
+                <Input
+                    inputId="departmentName"
+                    inputName="departmentName"
+                    inputType="text"
+                    placeholder="Department Name"
+                    name="Department Name" />
 
-                <div className="field">
-                    <label htmlFor="departmentName">Department Name<span className="required">*</span></label>
-                    <input type="text" id="departmentName" name="departmentName" placeholder="Department Name" required></input>
-                </div>
+                <Input
+                    inputId="designationDateOfJoining" inputName="designationDateOfJoining"
+                    inputType="text"
+                    placeholder="Date of joining"
+                    name="Designation at Date Of Joining" />
 
-                <div className="field">
-                    <label htmlFor="designationDateOfJoining">Designation at Date Of Joining<span className="required">*</span></label>
-                    <input type="text" id="designationDateOfJoining" name="designationDateOfJoining" placeholder="Enter the designation at date of joining" required></input>
-                </div>
+                <Input
+                    inputId="teacherName"
+                    inputName="teacherName"
+                    inputType="text"
+                    placeholder="Teacher Name"
+                    name="Teacher Name"
+                    value={tName}
+                    onChange={(e) => nameHandle(e)}
 
-                <div className="field">
-                    <label htmlFor="teacherName">Teacher Name<span className="required">*</span></label>
-                    <input type="text" value={tName} onChange={(e) => nameHandle(e)} id="teacherName" name="teacherName" placeholder="Teacher Name" required></input>
-                </div>
+                />
 
-                <div className="field">
-                    <label htmlFor="qualification">Qualification<span className="required">*</span></label>
-                    <input type="text" id="qualification" name="qualification" placeholder="Qualification" required></input>
-                </div>
 
-                <div className="field">
-                    <label htmlFor="specialization">Specialization<span className="required">*</span></label>
-                    <input type="text" id="specialization" name="specialization" placeholder="Specialization" required></input>
-                </div>
+                <Input
+                    inputId="qualification"
+                    inputName="qualification"
+                    inputType="text"
+                    placeholder="Qualification"
+                    name="Qualification"
+                />
 
-                <div className="field">
-                    <label htmlFor="joinDate">Date Of Joining<span className="required">*</span></label>
-                    <input type="date" id="joinDate" name="joinDate" required></input>
-                </div>
+                <Input
+                    inputId="specialization"
+                    inputName="specialization"
+                    inputType="text"
+                    placeholder="Specialization"
+                    name="Specialization"
+                />
 
-                <div className="field">
-                    <label htmlFor="basicPay">Present Basic Pay<span className="required">*</span></label>
-                    <input type="text" id="basicPay" name="basicPay" placeholder="Present Basic Pay" required></input>
-                </div>
 
-                <div className="field">
-                    <label htmlFor="appointmentLetter">Appointment Letter No.<span className="required">*</span></label>
-                    <input type="text" id="appointmentLetter" name="appointmentLetter" placeholder="Enter Appointment Letter No." required></input>
-                </div>
+                <Input
+                    inputId="joinDate"
+                    inputName="joinDate"
+                    inputType="date"
+                    name="Date Of Joining"
+                />
 
-                <div className="field">
-                    <label htmlFor="approvalDate">University Approval Date<span className="required">*</span></label>
-                    <input type="date" id="approvalDate" name="approvalDate" required></input>
-                </div>
+                <Input
+                    inputId="basicPay"
+                    inputName="basicPay"
+                    inputType="text"
+                    placeholder="Present Basic Pay"
+                    name="Present Basic Pay"
+                />
 
-                <div className="field">
-                    <label htmlFor="teacherType">Designation Type<span className="required">*</span></label>
-                    <select id="teacherType" name="teacherType" required>
-                        <option value="">-- Select Teacher Type --</option>
-                        <option value="Visiting">Visiting</option>
-                        <option value="Regular">Regular</option>
-                    </select>
-                </div>
+                <Input
+                    inputId="appointmentLetter"
+                    inputName="appointmentLetter"
+                    inputType="text"
+                    placeholder="Enter Appointment Letter No."
+                    name="Appointment Letter No."
+                />
 
-                <div className="field">
-                    <label htmlFor="currentDesignation">Present/Current Designation<span className="required">*</span></label>
-                    <input type="text" id="currentDesignation" name="currentDesignation" placeholder="Enter the present/current designation" required></input>
-                </div>
+                <Input
+                    inputId="approvalDate"
+                    inputName="approvalDate"
+                    inputType="date"
+                    name="University Approval Date"
+                    required
+                />
 
-                <div className="field">
-                    <label htmlFor="programme">Programme Associated With<span className="required">*</span></label>
-                    <select id="programme" name="programme" required>
-                        <option value="">Select Programmes-</option>
-                        <option value="(BACHELOR OF COMMERCE): (BUSINESS ADMINISTRATION)">(BACHELOR OF COMMERCE): (BUSINESS ADMINISTRATION)</option>
-                        <option value="(BACHELOR OF COMMERCE): (BANKING, FINANCIAL SERVICES AND INSURANCE)">(BACHELOR OF COMMERCE): (BANKING, FINANCIAL SERVICES AND INSURANCE)</option>
-                        <option value="(MASTER OF COMMERCE): (BUSINESS MANAGEMENT)">(MASTER OF COMMERCE): (BUSINESS MANAGEMENT)</option>
-                        <option value="(MASTER OF COMMERCE): (BANKING & FINANCE)">(MASTER OF COMMERCE): (BANKING & FINANCE)</option>
-                        <option value="(MASTER OF COMMERCE): M.Sc.(FINANCE)">(MASTER OF COMMERCE): M.Sc.(FINANCE)</option>
-                        <option value="(MASTER OF SCIENCE): (INFORMATION TECHNOLOGY)">(MASTER OF SCIENCE): (INFORMATION TECHNOLOGY)</option>
-                        <option value="(BACHELOR OF SCIENCE): (COMPUTER SCIENCE)">(BACHELOR OF SCIENCE): (COMPUTER SCIENCE)</option>
-                        <option value="(BACHELOR OF SCIENCE) : (INFORMATION TECHNOLOGY)">(BACHELOR OF SCIENCE) : (INFORMATION TECHNOLOGY)</option>
-                        <option value="(BACHELOR OF ARTS): MULTIMEDIA AND MASS COMMUNICATION">(BACHELOR OF ARTS): MULTIMEDIA AND MASS COMMUNICATION</option>
-                        <option value="(BACHELOR OF SCIENCE): (DATA SCIENCE)">(BACHELOR OF SCIENCE): (DATA SCIENCE)</option>
-                        <option value="(BACHELOR OF SCIENCE): (COMPUTER APPLICATIONS)">(BACHELOR OF SCIENCE): (COMPUTER APPLICATIONS)</option>
-                        <option value="(BACHELOR OF COMMERCE): (BUSINESS ADMINISTRATION)">(BACHELOR OF COMMERCE): (BUSINESS ADMINISTRATION)</option>
-                        <option value="(BACHELOR OF COMMERCE): COMMERCE">(BACHELOR OF COMMERCE): COMMERCE</option>
-                        <option value="(MASTER OF COMMERCE): ADVANCED ACCOUNTANCY">(MASTER OF COMMERCE): ADVANCED ACCOUNTANCY</option>
-                        <option value="(BACHELOR OF COMMERCE): (ACCOUNTING & FINANCE)">(BACHELOR OF COMMERCE): (ACCOUNTING & FINANCE)</option>
-                        <option value="(BACHELOR OF COMMERCE): (BANKING & INSURANCE)">(BACHELOR OF COMMERCE): (BANKING & INSURANCE)</option>
-                        <option value="(BACHELOR OF COMMERCE): (FINANCIAL MARKETS)">(BACHELOR OF COMMERCE): (FINANCIAL MARKETS)</option>
-                        <option value="(BACHELOR OF COMMERCE): (MANAGEMENT STUDIES)">(BACHELOR OF COMMERCE): (MANAGEMENT STUDIES)</option>
-                    </select>
-                </div>
 
-                <div className="field">
-                    <label htmlFor="percentageMarks">Percentage Of Marks<span className="required">*</span></label>
-                    <input type="text" value={percent} onChange={(e) => percenthandle(e)} id="percentageMarks" name="percentageMarks" placeholder="Percentage Of Marks" required></input>
-                </div>
+                <Select
+                    selectId="teacherType"
+                    selectName="teacherType"
+                    name="Designation Type"
+                    options={["-- Select Teacher Type --", "Visiting", "Regular"]}
+                    required
+                />
 
-                <div className="field">
-                    <label htmlFor="teachingExperience">Years Of Teaching Experience<span className="required">*</span></label>
-                    <input type="text" value={tExp} onChange={(e) => tExpHandle(e)} id="teachingExperience" name="teachingExperience" placeholder="Years Of Teaching Experience" required></input>
-                </div>
-                <div className="field">
-                    <label htmlFor="industryExperience">Total Industry Experience<span className="required">*</span></label>
-                    <input type="text" value={indExp} onChange={(e) => indExpHandle(e)} id="industryExperience" name="industryExperience" placeholder="Total Industry Experience" required></input>
-                </div>
 
-                <div className="field">
-                    <label htmlFor="birthDate">Birth Date<span className="required">*</span></label>
-                    <input type="date" id="birthDate" name="birthDate" max="2005-01-01" required></input>
-                </div>
+                <Input
+                    inputId="currentDesignation"
+                    inputName="currentDesignation"
+                    inputType="text"
+                    placeholder="Enter the present/current designation"
+                    name="Present/Current Designation"
+                />
 
-                <div className="field">
-                    <label htmlFor="scalePay">Scale Of Pay<span className="required">*</span></label>
-                    <select id="scalePay" name="scalePay" required>
-                        <option value="">-- Pay --</option>
-                        <option value="Level1">Level1</option>
-                        <option value="Level2">Level2</option>
-                        <option value="Level3">Level3</option>
-                        <option value="Level4">Level4</option>
-                        <option value="Level5">Level5</option>
-                        <option value="Level6">Level6</option>
-                        <option value="Level7">Level7</option>
-                        <option value="Level8">Level8</option>
-                        <option value="Level9">Level9</option>
-                        <option value="Level10">Level10</option>
-                        <option value="Level11">Level11</option>
-                        <option value="Level12">Level12</option>
-                    </select>
-                </div>
 
-                <div className="field">
-                    <label htmlFor="totalEmoluments">Total Emoluments<span className="required">*</span></label>
-                    <input type="text" id="totalEmoluments" name="totalEmoluments" placeholder="Total Emoluments" required></input>
-                </div>
+                <Select
+                    selectId="programme"
+                    selectName="programme"
+                    name="Programme Associated With"
+                    options={programmeOptions}
+                    required
+                />
 
-                <div className="field">
-                    <label htmlFor="phoneNo">Phone No<span className="required">*</span></label>
-                    <input type="text" id="phoneNo" onChange={(e) => phonehandle(e)} name="phoneNo" minLength={10} maxLength={10} placeholder="Phone No" required></input>
-                </div>
+                <Input
+                    inputId="percentageMarks"
+                    inputName="percentageMarks"
+                    inputType="text"
+                    placeholder="Percentage Of Marks"
+                    name="Percentage Of Marks"
+                    value={percent}
+                    onChange={(e)=>percenthandle(e)}
+                    required
+                />
 
-                <div className="field">
-                    <label htmlFor="resume">Resume<span className="required">*</span></label>
-                    <input type="file" id="resume" name="resume" placeholder="cv" accept="*/*" required></input>
-                </div>
+                <Input
+                    inputId="teachingExperience"
+                    inputName="teachingExperience"
+                    inputType="text"
+                    placeholder="Years Of Teaching Experience"
+                    name="Years Of Teaching Experience"
+                    value={tExp}
+                    onChange={tExpHandle}
+                    required
+                />
 
-                <div className="field">
-                    <label htmlFor="photo">Photo Image<span className="required">*</span></label>
-                    <input type="file" id="photo" name="photo" placeholder="image" accept="image/*" required></input>
-                </div>
+                <Input
+                    inputId="industryExperience"
+                    inputName="industryExperience"
+                    inputType="text"
+                    placeholder="Total Industry Experience"
+                    name="Total Industry Experience"
+                    value={indExp}
+                    onChange={indExpHandle}
+                    required
+                />
 
-                <button type="submit" className="submit-button">submit</button>
+                <Input
+                    inputId="birthDate"
+                    inputName="birthDate"
+                    inputType="date"
+                    name="Birth Date"
+                    max="2005-01-01"
+                    required
+                />
+
+
+                <Select
+                    selectId="scalePay"
+                    selectName="scalePay"
+                    name="Scale Of Pay"
+                    options={scalePayOptions}
+                    required
+                />
+
+                <Input
+                    inputId="totalEmoluments"
+                    inputName="totalEmoluments"
+                    inputType="text"
+                    placeholder="Total Emoluments"
+                    name="Total Emoluments"
+                />
+
+
+                <Input
+                    inputId="phoneNo"
+                    inputName="phoneNo"
+                    inputType="text"
+                    placeholder="Phone No"
+                    name="Phone No"
+                    minLength={10}
+                    maxLength={10}
+                    onChange={(e) => phonehandle(e)}
+                    required
+                />
+
+                <Input
+                    inputId="resume"
+                    inputName="resume"
+                    inputType="file"
+                    placeholder="cv"
+                    accept="*/*"
+                    name="Resume"
+                />
+                <Input
+                    inputId="photo"
+                    inputName="photo"
+                    inputType="file"
+                    placeholder="image"
+                    accept="image/*"
+                    name="Photo Image"
+                />
+                <Button buttonType="submit" buttonName="submit-button" name="Submit" />
             </form>
 
 
