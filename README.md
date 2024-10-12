@@ -16,7 +16,7 @@ Clone the project
 Go to the project directory
 
 ```bash
-  cd formPage
+  cd formPage/client
 ```
 
 Install dependencies
