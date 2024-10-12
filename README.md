@@ -10,7 +10,7 @@ integrating form with the backend server
 Clone the project
 
 ```bash
-  git clone https://formPage
+ https://github.com/murarii07/formPage.git
 ```
 
 Go to the project directory
